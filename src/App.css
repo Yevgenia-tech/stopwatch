@@ -1,0 +1,33 @@
+.app {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 40px;
+  /* background-image is set from the selected background in App.jsx */
+  background-color: var(--black);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Desktop: settings button top-right */
+.app__settings {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
+/* Mobile: settings button bottom-right */
+@media (max-width: 767px) {
+  .app {
+    padding: 0 20px 40px;
+  }
+
+  .app__settings {
+    top: auto;
+    bottom: 24px;
+    right: 24px;
+  }
+}

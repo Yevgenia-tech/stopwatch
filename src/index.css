@@ -1,0 +1,40 @@
+/* Design tokens — Figma variables from Desktop_Timer_1 / Mobile_Timer_1 */
+:root {
+  --black: #141920;
+  --white: #ffffff;
+  --grey-light: #f7f7f8;
+  --black-transparency-5: rgba(0, 0, 0, 0.05);
+  --white-transparency-20: rgba(255, 255, 255, 0.2);
+  --pause-color: #062146;
+  --grey-border: #dedfe0;
+  --grey-light-darker: #f1f2f3;
+
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--black);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--black);
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  margin: 0;
+  cursor: pointer;
+}

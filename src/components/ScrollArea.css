@@ -1,0 +1,36 @@
+.scroll-area {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+
+.scroll-area::-webkit-scrollbar {
+  display: none;
+}
+
+/* Figma: Scroll — 14px white track, 4px padding, 6px thumb */
+.scroll-area__track {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 14px;
+  padding: 4px;
+  background: var(--white);
+}
+
+/* visibility (not display) keeps the track measurable while hidden */
+.scroll-area__track.is-hidden {
+  visibility: hidden;
+}
+
+.scroll-area__thumb {
+  width: 6px;
+  border-radius: 10px;
+  background: var(--grey-light-darker);
+  cursor: grab;
+  touch-action: none;
+}
+
+.scroll-area__thumb:active {
+  cursor: grabbing;
+}

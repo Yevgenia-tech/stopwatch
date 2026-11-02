@@ -1,0 +1,144 @@
+/* Desktop — Figma: Stopwatch / Device=Desktop (23:835) */
+.stopwatch {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  border-radius: 80px;
+  background: var(--white-transparency-20);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.stopwatch__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 8px 16px;
+  border-radius: 72px;
+  background: var(--white);
+}
+
+.stopwatch__numbers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 24px 40px 16px;
+  border-radius: 64px;
+  background: var(--grey-light);
+  color: var(--black);
+  text-align: center;
+  white-space: nowrap;
+  line-height: 0.9;
+}
+
+.stopwatch__label,
+.stopwatch__time {
+  margin: 0;
+}
+
+.stopwatch__label {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.54px;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.stopwatch__time {
+  font-size: 164px;
+  font-weight: 400;
+  letter-spacing: -16.4px;
+  /* Equal-width digits so the layout doesn't jitter while counting */
+  font-variant-numeric: tabular-nums;
+}
+
+.stopwatch__buttons {
+  display: flex;
+  gap: 4px;
+}
+
+.stopwatch__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 148px;
+  height: 72px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 200px;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -1.2px;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+.stopwatch__button--start {
+  background: var(--black);
+  color: var(--white);
+}
+
+.stopwatch__button--start.is-pause {
+  background: var(--pause-color);
+}
+
+.stopwatch__button--clear {
+  background: var(--grey-light);
+  border-color: var(--black-transparency-5);
+  color: var(--black);
+}
+
+.stopwatch__button:focus-visible {
+  outline: 2px solid var(--pause-color);
+  outline-offset: 2px;
+}
+
+/* Mobile — Figma: Stopwatch / Device=Mobile (23:847) */
+@media (max-width: 767px) {
+  .stopwatch {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 56px;
+  }
+
+  .stopwatch__container {
+    gap: 48px;
+    padding: 8px;
+    border-radius: 48px;
+  }
+
+  .stopwatch__numbers {
+    width: 100%;
+    gap: 8px;
+    padding: 36px 40px 28px;
+    border-radius: 40px;
+  }
+
+  .stopwatch__label {
+    font-size: 20px;
+    letter-spacing: -0.6px;
+  }
+
+  .stopwatch__time {
+    font-size: min(72px, 18.5vw);
+    letter-spacing: -0.1em;
+  }
+
+  .stopwatch__buttons {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .stopwatch__button {
+    width: 90px;
+    height: 90px;
+  }
+
+  /* Mobile layout puts Clear on the left, Start on the right */
+  .stopwatch__button--start {
+    order: 2;
+  }
+}

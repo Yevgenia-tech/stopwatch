@@ -1,0 +1,217 @@
+/* Figma: Settings_Images — shared by Desktop and Mobile */
+.bg-picker {
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  overflow: hidden;
+  container-type: inline-size;
+}
+
+.bg-picker__title {
+  flex-shrink: 0;
+  margin: 0;
+  font-weight: 500;
+  color: var(--black);
+}
+
+/* Close button exists only in the mobile design */
+.bg-picker__close {
+  display: none;
+}
+
+.bg-picker__scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.bg-picker__grid {
+  display: grid;
+  gap: var(--tile-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Figma: Variable_Image */
+.bg-picker__tile {
+  display: block;
+  width: 100%;
+  height: var(--tile-height);
+  padding: 2px;
+  background: none;
+}
+
+.bg-picker__tile img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bg-picker__tile:focus-visible,
+.bg-picker__close:focus-visible {
+  outline: 2px solid var(--pause-color);
+  outline-offset: 1px;
+}
+
+/* Desktop — Figma: Settings_Images / Device=Desktop
+   Popup sits 24 from the right and 88 from the top (16 below the Settings button) */
+@media (min-width: 768px) {
+  /* Overflow=False: 202 × 162 Hug, tiles 92 × 54 */
+  .bg-picker {
+    --tile-gap: 2px;
+    --tile-height: 54px;
+    --grid-padding-y: 20px; /* 12 top + 8 bottom */
+    --visible-rows: 3;
+
+    top: 88px;
+    right: 24px;
+    width: 202px;
+    /* Never taller than the viewport, whatever the number of images */
+    max-height: calc(100dvh - 88px - 24px);
+    border-radius: 18px;
+  }
+
+  /* Overflow=True: 248 × 254, tiles 112 × 66, 3 rows visible */
+  .bg-picker--overflow {
+    --tile-height: 66px;
+
+    width: 248px;
+  }
+
+  /* Title frame: Fill × 32 Hug, padding 16 / 16 / 0 / 16, centered */
+  .bg-picker__title {
+    padding: 16px 16px 0;
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: -0.04em;
+    text-align: center;
+  }
+
+  .bg-picker__scroll {
+    max-height: calc(
+      var(--visible-rows) * var(--tile-height) + (var(--visible-rows) - 1) * var(--tile-gap) +
+        var(--grid-padding-y)
+    );
+  }
+
+  /* Thumb starts ~10px below the popup top (measured on the Overflow=True screenshot) */
+  .bg-picker__track {
+    top: 6px;
+  }
+
+  /* Images frame: Fill × Hug, padding 12 / 8 / 8 / 8, gap 2 × 2 */
+  .bg-picker__grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 12px 8px 8px;
+  }
+
+  /* Overflow=True: fixed 112px tiles, left-aligned; the spare 6px on the right
+     leaves room for the scrollbar */
+  .bg-picker--overflow .bg-picker__grid {
+    grid-template-columns: repeat(2, 112px);
+  }
+
+  /* Variable_Image: radius 10, padding 2; image radius 8.
+     The stroke is drawn inside and doesn't take space, as in Figma */
+  .bg-picker__tile {
+    border: 0;
+    border-radius: 10px;
+    transition: box-shadow 0.15s ease;
+  }
+
+  .bg-picker__tile img {
+    border-radius: 8px;
+  }
+
+  /* Variable_Image / State=Hover */
+  .bg-picker__tile:hover {
+    box-shadow: inset 0 0 0 1px var(--grey-border);
+  }
+
+  /* Variable_Image / State=Active */
+  .bg-picker__tile.is-active {
+    box-shadow: inset 0 0 0 1px var(--black);
+  }
+}
+
+/* Mobile — Figma: Settings_Images / Device=Mobile (23:1136, 59:417) */
+@media (max-width: 767px) {
+  .bg-picker {
+    --tile-gap: 4px;
+    --visible-rows: 2;
+    /* 3 columns, tile aspect 106 / 62 */
+    --tile-height: calc((100cqw - 2 * var(--tile-gap)) / 3 * 62 / 106);
+
+    /* Bottom edge aligned with the Settings button (bottom: 24px), covering it */
+    top: auto;
+    bottom: 24px;
+    right: 20px;
+    left: 20px;
+    gap: 12px;
+    max-width: 350px;
+    margin-left: auto;
+    max-height: calc(100dvh - 24px - 20px);
+    padding: 16px;
+    border-radius: 24px;
+  }
+
+  .bg-picker__title {
+    font-size: 14px;
+    line-height: normal;
+    letter-spacing: -0.56px;
+  }
+
+  .bg-picker__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    border-radius: 200px;
+    background: none;
+  }
+
+  .bg-picker__close img {
+    display: block;
+  }
+
+  .bg-picker__scroll {
+    max-height: calc(var(--visible-rows) * var(--tile-height) + (var(--visible-rows) - 1) * var(--tile-gap));
+  }
+
+  .bg-picker__track {
+    top: 36px;
+  }
+
+  .bg-picker__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .bg-picker__tile {
+    height: auto;
+    aspect-ratio: 106 / 62;
+    border: 1px solid transparent;
+    border-radius: 14px;
+    transition: border-color 0.15s ease;
+  }
+
+  .bg-picker__tile img {
+    border-radius: 12px;
+  }
+
+  .bg-picker__tile:hover {
+    border-color: var(--grey-border);
+  }
+
+  .bg-picker__tile.is-active {
+    border-color: var(--black);
+  }
+}
