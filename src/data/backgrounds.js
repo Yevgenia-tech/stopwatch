@@ -20,6 +20,8 @@ const backgroundList = [
   { file: 'violet.png', label: 'Violet abstract' },
   { file: 'Image_4.png', label: 'Blue glow' },
   { file: 'Image_5.png', label: 'Green leaves' },
+  { file: 'Image_6.png', label: 'Pink petals' },
+  { file: 'Image_7.png', label: 'Green hills' },
 ]
 
 // ── Nothing to edit below this line ─────────────────────────────────────────

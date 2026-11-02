@@ -5,8 +5,9 @@
   padding: 8px;
   border-radius: 80px;
   background: var(--white-transparency-20);
+  /* Figma: Background blur 32. The -webkit- prefix is added at build time;
+     declaring it by hand made the minifier drop the standard property */
   backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
 }
 
 .stopwatch__container {
@@ -97,9 +98,9 @@
 
 /* Mobile — Figma: Stopwatch / Device=Mobile (23:847) */
 @media (max-width: 767px) {
+  /* Fill: stretches between the 20px side paddings on any phone width */
   .stopwatch {
     width: 100%;
-    max-width: 350px;
     border-radius: 56px;
   }
 

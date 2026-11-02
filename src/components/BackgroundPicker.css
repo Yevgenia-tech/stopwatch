@@ -145,17 +145,24 @@
     /* 3 columns, tile aspect 106 / 62 */
     --tile-height: calc((100cqw - 2 * var(--tile-gap)) / 3 * 62 / 106);
 
-    /* Bottom edge aligned with the Settings button (bottom: 24px), covering it */
-    top: auto;
-    bottom: 24px;
+    /* 44 below the stopwatch card (--stopwatch-bottom is set in App.jsx);
+       350 wide, narrower on small screens; height Hug */
+    top: calc(var(--stopwatch-bottom, 0px) + 44px);
+    bottom: auto;
     right: 20px;
     left: 20px;
     gap: 12px;
     max-width: 350px;
     margin-left: auto;
-    max-height: calc(100dvh - 24px - 20px);
     padding: 16px;
     border-radius: 24px;
+  }
+
+  /* Short screens: not enough room below the card — pin 24 from the bottom,
+     covering the Settings button (App.jsx sets data-picker) */
+  [data-picker='bottom'] > .bg-picker {
+    top: auto;
+    bottom: 24px;
   }
 
   .bg-picker__title {
@@ -199,12 +206,12 @@
     height: auto;
     aspect-ratio: 106 / 62;
     border: 1px solid transparent;
-    border-radius: 14px;
+    border-radius: 10px;
     transition: border-color 0.15s ease;
   }
 
   .bg-picker__tile img {
-    border-radius: 12px;
+    border-radius: 8px;
   }
 
   .bg-picker__tile:hover {
