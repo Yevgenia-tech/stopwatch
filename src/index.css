@@ -32,6 +32,13 @@ body {
   background: var(--black);
 }
 
+/* Mobile: white behind the browser bars and in overscroll — see App.css */
+@media (max-width: 767px) {
+  body {
+    background: var(--white);
+  }
+}
+
 button {
   font: inherit;
   color: inherit;

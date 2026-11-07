@@ -1,11 +1,16 @@
+/* Safe areas (notch, status bar, home indicator) are 0 everywhere except iPhones/iPads
+   with viewport-fit=cover, so the Figma offsets below stay as they are on other screens.
+   The background itself covers the safe areas; only content is kept out of them. */
 .app {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100%;
-  padding: 40px;
-  /* background-image is set from the selected background in App.jsx */
+  padding: calc(40px + env(safe-area-inset-top, 0px)) calc(40px + env(safe-area-inset-right, 0px))
+    calc(40px + env(safe-area-inset-bottom, 0px)) calc(40px + env(safe-area-inset-left, 0px));
+  /* --app-background is set from the selected background in App.jsx */
+  background-image: var(--app-background);
   background-color: var(--black);
   background-position: center;
   background-size: cover;
@@ -15,19 +20,36 @@
 /* Desktop: settings button top-right */
 .app__settings {
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: calc(24px + env(safe-area-inset-top, 0px));
+  right: calc(24px + env(safe-area-inset-right, 0px));
 }
 
-/* Mobile: settings button bottom-right */
+/* Mobile: settings button bottom-right.
+   The safe areas above and below the background (status bar, home indicator) are white:
+   the background moves to a layer inset by them, and the page itself is white. */
 @media (max-width: 767px) {
   .app {
-    padding: 0 20px 40px;
+    isolation: isolate;
+    padding: env(safe-area-inset-top, 0px) calc(20px + env(safe-area-inset-right, 0px))
+      calc(40px + env(safe-area-inset-bottom, 0px)) calc(20px + env(safe-area-inset-left, 0px));
+    background: var(--white);
+  }
+
+  .app::before {
+    content: '';
+    position: absolute;
+    inset: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);
+    z-index: -1;
+    background-image: var(--app-background);
+    background-color: var(--black);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 
   .app__settings {
     top: auto;
-    bottom: 24px;
-    right: 24px;
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    right: calc(24px + env(safe-area-inset-right, 0px));
   }
 }

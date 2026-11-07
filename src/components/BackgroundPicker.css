@@ -66,11 +66,14 @@
     --grid-padding-y: 20px; /* 12 top + 8 bottom */
     --visible-rows: 3;
 
-    top: 88px;
-    right: 24px;
+    /* + safe areas: 0 except on iPhone/iPad with viewport-fit=cover (see App.css) */
+    top: calc(88px + env(safe-area-inset-top, 0px));
+    right: calc(24px + env(safe-area-inset-right, 0px));
     width: 202px;
     /* Never taller than the viewport, whatever the number of images */
-    max-height: calc(100dvh - 88px - 24px);
+    max-height: calc(
+      100dvh - 88px - 24px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)
+    );
     border-radius: 18px;
   }
 
@@ -149,8 +152,8 @@
        350 wide, narrower on small screens; height Hug */
     top: calc(var(--stopwatch-bottom, 0px) + 44px);
     bottom: auto;
-    right: 20px;
-    left: 20px;
+    right: calc(20px + env(safe-area-inset-right, 0px));
+    left: calc(20px + env(safe-area-inset-left, 0px));
     gap: 12px;
     max-width: 350px;
     margin-left: auto;
@@ -162,7 +165,7 @@
      covering the Settings button (App.jsx sets data-picker) */
   [data-picker='bottom'] > .bg-picker {
     top: auto;
-    bottom: 24px;
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
   }
 
   .bg-picker__title {
